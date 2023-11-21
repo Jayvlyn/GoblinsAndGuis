@@ -13,20 +13,27 @@ namespace GoblinsAndGuis
         {
             CharacterCreation,
             Adventure,
-            Combat
+            Combat,
+            Victory
         }
 
         private FormState currentForm = FormState.CharacterCreation;
         public Form1 characterCreation;
         public Form2 adventure;
-        private Form combat;
+        public Form3 combat;
+        public Form4 victory;
 
         public FormManager()
         {
             characterCreation = new Form1(20);
-            adventure = new Form2();
-            //combat = new Form3(player);
+            Init();
+        }
 
+        public void Init()
+        {
+            adventure = new Form2();
+            combat = new Form3();
+            victory = new Form4();
         }
 
         public void ChangeForm(FormState form)
@@ -34,25 +41,43 @@ namespace GoblinsAndGuis
             currentForm = form;
             if (form == FormState.CharacterCreation)
             {
+                victory.Hide();
                 adventure.Hide();
                 combat.Hide();
 
+                characterCreation.Init();
                 characterCreation.Show();
             }
             else if (form == FormState.Adventure)
             {
+                adventure.Hide();
+                combat.Hide();
                 characterCreation.Hide();
 
-                Assets assets = new Assets();
-                Game.nonPlayer = assets.characterList[Game.player.encounterCount];
-                adventure.Init();
-                adventure.Show();
+                if (Assets.characterList.Length > Game.player.encounterCount) 
+                {
+                    Game.nonPlayer = Assets.characterList[Game.player.encounterCount];
+                    adventure.Init();
+                    adventure.Show();
+                }
+                else
+                {
+                    ChangeForm(FormState.Victory);
+                }
             }
             else if (form == FormState.Combat)
             {
                 adventure.Hide();
 
+                combat.Init();
                 combat.Show();
+            }
+            else if (form == FormState.Victory)
+            {
+                adventure.Hide();
+                combat.Hide();
+
+                victory.Show();
             }
         }
     }

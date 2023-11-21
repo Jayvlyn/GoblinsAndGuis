@@ -8,14 +8,27 @@ namespace GoblinsAndGuis
 {
     public static class Game
     {
+        public static bool fin = false;
 
         public static Player player = new Player();
         public static NonPlayer nonPlayer = new NonPlayer();
-        public static FormManager formManager = new FormManager();
 
         public static void Init()
         {
-            Application.Run(formManager.characterCreation);
+
+
+
+            Application.Run(UI.formManager.characterCreation);
+        }
+
+        public static bool checkCombatVictory()
+        {
+            bool result = (nonPlayer.health <= 0);
+            if (result)
+            {
+                player.GainExperience(Game.nonPlayer.expValue);
+            }
+            return result;
         }
 
     }

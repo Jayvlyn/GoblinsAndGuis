@@ -20,16 +20,23 @@ namespace GoblinsAndGuis
             InitializeComponent();
         }
 
-        public void updateLabels()
-        {
-            playerLabel.Text = Game.player.name + "\nSpeed: " + Game.player.speed + "\nHealth: " + Game.player.health + "\nPower: " + Game.player.power;
-            nonPlayerLabel.Text = Game.nonPlayer.name + "\nSpeed: " + Game.nonPlayer.speed + "\nHealth: " + Game.nonPlayer.health + "\nPower: " + Game.nonPlayer.power;
-        }
 
         public void Init()
         {
-            branchesDeep = 0;
             Game.player.dialogueOptions.Clear();
+            responseComboBox.Items.Clear();
+            branchesDeep = 0;
+
+            if (Game.nonPlayer == (NonPlayer)Assets.characterList[0])
+            {
+                npcPictureBox.Image = Properties.Resources.BobRobert;
+            }
+            else if (Game.nonPlayer == (NonPlayer)Assets.characterList[1])
+            {
+                npcPictureBox.Image = Properties.Resources.ChobCrobert;
+            }
+
+            // Sets npc text to their first dialogue option, aka their intro
             nonPlayerDialogue.Text = Game.nonPlayer.dialogueOptions[0];
 
             switch (Game.player.encounterCount)
@@ -39,72 +46,121 @@ namespace GoblinsAndGuis
                     Game.player.dialogueOptions.Add("I'm here to make this my terf.");
                     break;
                 case 1:
-                    Game.player.dialogueOptions.Add("HEEELP HELP ME PLEASE");
-                    Game.player.dialogueOptions.Add("test text");
+                    Game.player.dialogueOptions.Add("Yeah I just talked to him back there, seems like an interesting guy.");
+                    Game.player.dialogueOptions.Add("He's dead, I killed him, and now it's your turn. This will be my town.");
                     break;
             }
 
-            responseComboBox.Items.Add(Game.player.dialogueOptions[0]);
-            responseComboBox.Items.Add(Game.player.dialogueOptions[1]);
-
-            updateLabels();
+            UI.populatePlayerResponses(responseComboBox);
+            UI.updateLabels(playerLabel, nonPlayerLabel);
         }
 
         private void responseComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Go into combat if npc turns hostile, no more talking
+            if (Game.nonPlayer.playerDisposition == NonPlayer.Disposition.Hostile)
+            {
+                Game.player.encounterCount++;
+                UI.formManager.ChangeForm(FormManager.FormState.Combat);
+                branchesDeep = 0;
+            }
+
             Game.player.dialogueOptions.Clear();
             switch (branchesDeep)
             {
-                case 0:
-                    if (responseComboBox.SelectedIndex == 0) // just passing along
+                case 0: // 0 BRANCHES DEEP
+                    if (responseComboBox.SelectedIndex == 0)
                     {
-                        // NPC response
-                        Game.nonPlayer.playerDisposition = NonPlayer.Disposition.Neutral;
-                        nonPlayerDialogue.Text = Game.nonPlayer.dialogueOptions[1];
+                        switch (Game.player.encounterCount)
+                        {
+                            case 0: // ENCOUNTER 0 BRANCH 0 SELECTED INDEX 0
+                                // NPC response
+                                Game.nonPlayer.playerDisposition = NonPlayer.Disposition.Neutral;
+                                nonPlayerDialogue.Text = Game.nonPlayer.dialogueOptions[1];
 
-                        // Player response options
-                        responseComboBox.Items.Clear();
-                        Game.player.dialogueOptions.Add("Is that him over there? I'll go say hi");
-                        Game.player.dialogueOptions.Add("Well it was nice to meet you, have a good day! :)");
-                        responseComboBox.Items.Add(Game.player.dialogueOptions[0]);
-                        responseComboBox.Items.Add(Game.player.dialogueOptions[1]);
+                                // Player response options
+                                responseComboBox.Items.Clear();
+                                Game.player.dialogueOptions.Add("Is that him over there? I'll go say hi");
+                                Game.player.dialogueOptions.Add("Well it was nice to meet you, have a good day! :)");
+                                break;
+                            case 1: // ENCOUNTER 1 BRANCH 0 SELECTETD INDEX 0
+                                // NPC response
+                                Game.nonPlayer.playerDisposition = NonPlayer.Disposition.Friendly;
+                                nonPlayerDialogue.Text = Game.nonPlayer.dialogueOptions[1];
 
+                                // Player response options
+                                responseComboBox.Items.Clear();
+                                Game.player.dialogueOptions.Add("I thought he was kinda weird");
+                                Game.player.dialogueOptions.Add("Yeah, he has a little bit of an ego...");
+                                break;
 
+                        }
+                        UI.populatePlayerResponses(responseComboBox);
+                        branchesDeep++;
                     }
-                    else if (responseComboBox.SelectedIndex == 1) // threat
+                    else if (responseComboBox.SelectedIndex == 1)
                     {
-                        // NPC response
-                        Game.nonPlayer.playerDisposition = NonPlayer.Disposition.Hostile;
-                        nonPlayerDialogue.Text = Game.nonPlayer.dialogueOptions[2];
+                        switch (Game.player.encounterCount)
+                        {
+                            case 0: // ENCOUNTER 0 BRANCH 0 SELECTED INDEX 1
+                                // NPC response
+                                Game.nonPlayer.playerDisposition = NonPlayer.Disposition.Hostile;
+                                nonPlayerDialogue.Text = Game.nonPlayer.dialogueOptions[2];
 
-                        // Player response options
-                        responseComboBox.Items.Clear();
-                        Game.player.dialogueOptions.Add("Try me >:/");
-                        Game.player.dialogueOptions.Add("Uh oh (I wasn't being serious)");
-                        responseComboBox.Items.Add(Game.player.dialogueOptions[0]);
-                        responseComboBox.Items.Add(Game.player.dialogueOptions[1]);
+                                // Player response options
+                                responseComboBox.Items.Clear();
+                                Game.player.dialogueOptions.Add("Try me >:/");
+                                Game.player.dialogueOptions.Add("Uh oh (I wasn't being serious)");
+                                UI.populatePlayerResponses(responseComboBox);
+                                branchesDeep++;
+                                break;
+
+                            case 1: // ENCOUNTER 1 BRANCH 0 SELECTED INDEX 1
+                                // NPC response
+                                Game.nonPlayer.playerDisposition = NonPlayer.Disposition.Hostile;
+                                nonPlayerDialogue.Text = Game.nonPlayer.dialogueOptions[2];
+
+                                // Player response options
+                                responseComboBox.Items.Clear();
+                                Game.player.dialogueOptions.Add("You're gonna lay dead with your brother.");
+                                Game.player.dialogueOptions.Add("Here we go again.");
+                                UI.populatePlayerResponses(responseComboBox);
+                                branchesDeep++;
+                                break;
+                        }
+
                     }
                     break;
 
-                case 1: // Either start of fight or continue to next encounter
-                    if (Game.nonPlayer.playerDisposition == NonPlayer.Disposition.Friendly || Game.nonPlayer.playerDisposition == NonPlayer.Disposition.Neutral)
+                case 1: // ONE BRANCH DEEP
+                    switch (Game.player.encounterCount)
                     {
-                        Game.player.encounterCount++;
+                        case 0: // ENCOUNTER 0 BRANCH 1 INDEX N/A
+                            if (Game.nonPlayer.playerDisposition == NonPlayer.Disposition.Friendly || Game.nonPlayer.playerDisposition == NonPlayer.Disposition.Neutral)
+                            {
+                                Game.player.encounterCount++;
+                                UI.formManager.ChangeForm(FormManager.FormState.Adventure);
+                                branchesDeep = 0;
+                            }
 
-                    }
-                    else if (Game.nonPlayer.playerDisposition == NonPlayer.Disposition.Hostile)
-                    {
+                            break;
 
+                        case 1: // ENCOUNTER 1 BRANCH 1
+                            Game.nonPlayer.playerDisposition = NonPlayer.Disposition.Hostile;
+                            nonPlayerDialogue.Text = Game.nonPlayer.dialogueOptions[3];
+
+                            // Player response options
+                            responseComboBox.Items.Clear();
+                            Game.player.dialogueOptions.Add("Woah I thought we were chill!");
+                            Game.player.dialogueOptions.Add("Please don't.");
+                            Game.player.dialogueOptions.Add("I was just agreeing with you!!");
+                            Game.player.dialogueOptions.Add("SOMEONE HELP THIS GUY IS SCARING ME");
+                            UI.populatePlayerResponses(responseComboBox);
+                            branchesDeep++;
+                            break;
                     }
                     break;
-
             }
-            branchesDeep++;
-
-
-
-
-            responseComboBox.Text = "Your Response:";
         }
 
         // Trash
@@ -124,5 +180,14 @@ namespace GoblinsAndGuis
 
         }
 
+        private void npcPictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void playerPictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

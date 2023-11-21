@@ -6,11 +6,10 @@ namespace GoblinsAndGuis;
 
 public partial class Form1 : Form
 {
-    Random r;
-    Time t;
     double dt;
 
     int pointBuy = 0;
+    int startPoints;
     int speedValue = 1;
     int healthValue = 1;
     int powerValue = 1;
@@ -18,28 +17,32 @@ public partial class Form1 : Form
 
     public Form1(int points)
     {
+        startPoints = points;
+
         InitializeComponent();
         Init();
 
-        // Timer for Update()
-        System.Windows.Forms.Timer tmr = new System.Windows.Forms.Timer();
-        tmr.Interval = 50;   // milliseconds
-        tmr.Tick += Update;  // set handler
-        tmr.Start();
-
-        pointBuy = points;
         pointsLabel.Text = "Points: " + pointBuy;
     }
 
-    private void Update(object sender, EventArgs e)  //run this logic each timer tick
+    public void Init()
     {
-        t.Update();
+        if(Game.player != null)Game.player = new Player();
+        Assets.Init();
+        if(UI.formManager != null)UI.formManager.Init();
+        ResetUi();
+        pointBuy = startPoints;
+        
+
     }
 
-    private void Init()
+    public void ResetUi()
     {
-        r = new Random();
-        t = new Time();
+        pointsLabel.Text = "Points: " + pointBuy;
+        nameTextBox.Text = string.Empty;
+        speedUpDown.Value = 1;
+        healthUpDown.Value = 1;
+        powerUpDown.Value = 1;
     }
 
     private void PointsUpdate()
@@ -86,7 +89,7 @@ public partial class Form1 : Form
         Game.player.speed = speedValue;
         Game.player.health = healthValue;
         Game.player.power = powerValue;
-        Game.formManager.ChangeForm(FormManager.FormState.Adventure);
+        UI.formManager.ChangeForm(FormManager.FormState.Adventure);
     }
 
     private void Form1_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
@@ -111,4 +114,8 @@ public partial class Form1 : Form
 
     }
 
+    private void powerTextBox_TextChanged(object sender, EventArgs e)
+    {
+
+    }
 }
