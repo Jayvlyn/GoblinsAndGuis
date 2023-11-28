@@ -83,7 +83,7 @@ namespace GoblinsAndGuis
             nonPlayerLabel.AutoSize = true;
             nonPlayerLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             nonPlayerLabel.ForeColor = SystemColors.ActiveCaptionText;
-            nonPlayerLabel.Location = new Point(616, 12);
+            nonPlayerLabel.Location = new Point(593, 9);
             nonPlayerLabel.Name = "nonPlayerLabel";
             nonPlayerLabel.Size = new Size(194, 48);
             nonPlayerLabel.TabIndex = 3;

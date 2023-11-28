@@ -23,6 +23,12 @@ namespace GoblinsAndGuis
         public int level = 1;
         public int experience = 0;
 
+        public bool stunned = false;
+        public float stunTimer;
+
+        public bool blocking = false;
+        public float blockTimer;
+
         public Character(string name = "Unnamed", int speed = 1, int health = 1, int power = 1)
         {
             this.name = name;
@@ -32,23 +38,87 @@ namespace GoblinsAndGuis
             this.power = power;
         }
 
-        public void UseMove(Character target, int moveNum)
+        public virtual void Update(double dt)
         {
-            if (moves[moveNum].ready)
+            if (stunned) StunTimer(dt);
+            if (blocking) BlockTimer(dt);
+        }
+
+        public virtual void UseMove(Character target, int moveNum)
+        {
+            Move move = moves[moveNum];
+
+            if (move.ready)
             {
                 // Apply damage to opponent
                 int damage = 0;
-                if (moves[moveNum].damage > 0) damage = moves[moveNum].damage + power * 2;
+                if (move.damage > 0) damage = move.damage + power * 2; // calculate damage for move only when damage on move is > 0
+                target.TakeDamage(damage);
 
-                if (target.health - damage < 0) target.health = 0;
-                else target.health -= damage;
                 // Apply healing to user
-                if (health + moves[moveNum].healing > maxHealth) health = maxHealth;
-                else health += moves[moveNum].healing;
-                //
+                if (health + move.healing > maxHealth) health = maxHealth;
+                else health += move.healing;
 
-                moves[moveNum].cooldownTimer = moves[moveNum].cooldownTime;
+                // Stun target
+                if (move.stun > 0)
+                {
+                    target.GetStunned(move.stun);
+                }
+
+                // Blocking
+                if (move.block > 0)
+                {
+                    Block(move.block);   
+                }
+
                 moves[moveNum].ready = false;
+            }
+        }
+
+        public void TakeDamage(int damage)
+        {
+            if (!blocking)
+            {
+                if (health - damage < 0) health = 0; // drop to 0 if would otherwise result in negative health
+                else health -= damage; // apply damage
+            }
+        }
+
+        public void GetStunned(float time)
+        {
+            stunned = true;
+            stunTimer = time;
+        }
+
+        public void StunTimer(double dt)
+        {
+            if (stunTimer > 0)
+            {
+                stunTimer -= (float)dt;
+            }
+            else
+            {
+                stunTimer = 0;
+                stunned = false;
+            }
+        }
+
+        public void Block(float time)
+        {
+            blocking = true;
+            blockTimer = time;
+        }
+
+        public void BlockTimer(double dt)
+        {
+            if (blockTimer > 0)
+            {
+                blockTimer -= (float)dt;
+            }
+            else
+            {
+                blockTimer = 0;
+                blocking = false;
             }
         }
 
@@ -61,6 +131,18 @@ namespace GoblinsAndGuis
         public void LevelUp()
         {
             level++;
+        }
+
+        public void ForceEndBlock()
+        {
+            blocking = false;
+            blockTimer = 0;
+        }
+
+        public void ForceEndStun()
+        {
+            stunned = false;
+            stunTimer = 0;
         }
     }
 }

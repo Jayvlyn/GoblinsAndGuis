@@ -12,12 +12,10 @@ namespace GoblinsAndGuis
 
         public static Player player = new Player();
         public static NonPlayer nonPlayer = new NonPlayer();
+        public static bool combatActive = false;
 
         public static void Init()
         {
-
-
-
             Application.Run(UI.formManager.characterCreation);
         }
 
@@ -26,7 +24,21 @@ namespace GoblinsAndGuis
             bool result = (nonPlayer.health <= 0);
             if (result)
             {
-                player.GainExperience(Game.nonPlayer.expValue);
+                player.GainExperience(nonPlayer.expValue);
+                for (int i = 0; i < 4; i++)
+                {
+                    player.moves[i].ReadyMove();
+                }
+            }
+            return result;
+        }
+
+        public static bool checkDeath()
+        {
+            bool result = player.health <= 0;
+            if(result) {
+                player.dead = true;
+                UI.formManager.ChangeForm(FormManager.FormState.Victory); // end screen either way, not actual victory
             }
             return result;
         }

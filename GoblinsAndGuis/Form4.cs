@@ -17,9 +17,23 @@ namespace GoblinsAndGuis
             InitializeComponent();
         }
 
+        public void Init()
+        {
+            if (Game.player.dead)
+            {
+                subtitleLabel.Text = "You died to " + Assets.characterList[Game.player.encounterCount - 1].name + "!!";
+                resultLabel.Text = "YOU LOSE!!!";
+            }
+        }
+
         private void restartButton_Click(object sender, EventArgs e)
         {
             UI.formManager.ChangeForm(FormManager.FormState.CharacterCreation);
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

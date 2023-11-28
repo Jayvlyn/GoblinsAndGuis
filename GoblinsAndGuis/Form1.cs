@@ -27,22 +27,20 @@ public partial class Form1 : Form
 
     public void Init()
     {
-        if(Game.player != null)Game.player = new Player();
+        if (Game.player != null) Game.player = new Player();
         Assets.Init();
-        if(UI.formManager != null)UI.formManager.Init();
+        if (UI.formManager != null) UI.formManager.Init();
         ResetUi();
-        pointBuy = startPoints;
-        
-
     }
 
     public void ResetUi()
     {
-        pointsLabel.Text = "Points: " + pointBuy;
-        nameTextBox.Text = string.Empty;
         speedUpDown.Value = 1;
         healthUpDown.Value = 1;
         powerUpDown.Value = 1;
+        pointBuy = startPoints;
+        pointsLabel.Text = "Points: " + pointBuy;
+        nameTextBox.Text = string.Empty;
     }
 
     private void PointsUpdate()
@@ -88,6 +86,7 @@ public partial class Form1 : Form
         Game.player.name = nameTextBox.Text;
         Game.player.speed = speedValue;
         Game.player.health = healthValue;
+        Game.player.maxHealth = healthValue;
         Game.player.power = powerValue;
         UI.formManager.ChangeForm(FormManager.FormState.Adventure);
     }

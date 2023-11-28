@@ -51,7 +51,7 @@ partial class Form1
         speedUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         speedUpDown.BackColor = Color.SkyBlue;
         speedUpDown.Font = new Font("Segoe UI", 40F, FontStyle.Regular, GraphicsUnit.Point);
-        speedUpDown.Location = new Point(332, 137);
+        speedUpDown.Location = new Point(514, 157);
         speedUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         speedUpDown.Name = "speedUpDown";
         speedUpDown.Size = new Size(296, 114);
@@ -69,6 +69,7 @@ partial class Form1
         nameTextBox.PlaceholderText = "Enter Character Name";
         nameTextBox.Size = new Size(959, 87);
         nameTextBox.TabIndex = 1;
+        nameTextBox.TextAlign = HorizontalAlignment.Center;
         nameTextBox.TextChanged += textBox1_TextChanged;
         // 
         // speedTextBox
@@ -76,7 +77,7 @@ partial class Form1
         speedTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         speedTextBox.BackColor = Color.LightSkyBlue;
         speedTextBox.Font = new Font("Segoe UI", 40F, FontStyle.Regular, GraphicsUnit.Point);
-        speedTextBox.Location = new Point(30, 137);
+        speedTextBox.Location = new Point(212, 157);
         speedTextBox.Name = "speedTextBox";
         speedTextBox.ReadOnly = true;
         speedTextBox.Size = new Size(274, 114);
@@ -89,7 +90,7 @@ partial class Form1
         healthTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         healthTextBox.BackColor = Color.MediumSeaGreen;
         healthTextBox.Font = new Font("Segoe UI", 40F, FontStyle.Regular, GraphicsUnit.Point);
-        healthTextBox.Location = new Point(30, 269);
+        healthTextBox.Location = new Point(212, 292);
         healthTextBox.Name = "healthTextBox";
         healthTextBox.ReadOnly = true;
         healthTextBox.Size = new Size(315, 114);
@@ -102,7 +103,7 @@ partial class Form1
         healthUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         healthUpDown.BackColor = Color.SeaGreen;
         healthUpDown.Font = new Font("Segoe UI", 40F, FontStyle.Regular, GraphicsUnit.Point);
-        healthUpDown.Location = new Point(362, 270);
+        healthUpDown.Location = new Point(544, 292);
         healthUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         healthUpDown.Name = "healthUpDown";
         healthUpDown.Size = new Size(266, 114);
@@ -116,7 +117,7 @@ partial class Form1
         powerUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         powerUpDown.BackColor = Color.Brown;
         powerUpDown.Font = new Font("Segoe UI", 40F, FontStyle.Regular, GraphicsUnit.Point);
-        powerUpDown.Location = new Point(332, 406);
+        powerUpDown.Location = new Point(514, 430);
         powerUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         powerUpDown.Name = "powerUpDown";
         powerUpDown.Size = new Size(296, 114);
@@ -130,7 +131,7 @@ partial class Form1
         powerTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         powerTextBox.BackColor = Color.IndianRed;
         powerTextBox.Font = new Font("Segoe UI", 40F, FontStyle.Regular, GraphicsUnit.Point);
-        powerTextBox.Location = new Point(30, 405);
+        powerTextBox.Location = new Point(212, 429);
         powerTextBox.Name = "powerTextBox";
         powerTextBox.ReadOnly = true;
         powerTextBox.Size = new Size(274, 114);
@@ -144,7 +145,7 @@ partial class Form1
         createButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         createButton.BackColor = Color.Gold;
         createButton.Font = new Font("Segoe UI", 40F, FontStyle.Regular, GraphicsUnit.Point);
-        createButton.Location = new Point(529, 692);
+        createButton.Location = new Point(282, 692);
         createButton.Name = "createButton";
         createButton.Size = new Size(460, 124);
         createButton.TabIndex = 7;
@@ -157,7 +158,7 @@ partial class Form1
         pointsLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         pointsLabel.AutoSize = true;
         pointsLabel.Font = new Font("Segoe UI", 40F, FontStyle.Regular, GraphicsUnit.Point);
-        pointsLabel.Location = new Point(30, 692);
+        pointsLabel.Location = new Point(372, 559);
         pointsLabel.Name = "pointsLabel";
         pointsLabel.Size = new Size(298, 106);
         pointsLabel.TabIndex = 8;

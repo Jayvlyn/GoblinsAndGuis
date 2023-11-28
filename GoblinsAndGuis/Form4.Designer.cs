@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             thatsItLabel = new Label();
-            winLabel = new Label();
+            resultLabel = new Label();
             subtitleLabel = new Label();
             restartButton = new Button();
             SuspendLayout();
@@ -44,17 +44,19 @@
             thatsItLabel.TabIndex = 0;
             thatsItLabel.Text = "That's it!";
             // 
-            // winLabel
+            // resultLabel
             // 
-            winLabel.AutoSize = true;
-            winLabel.BackColor = Color.DarkOliveGreen;
-            winLabel.Font = new Font("Segoe UI", 35F, FontStyle.Bold, GraphicsUnit.Point);
-            winLabel.ForeColor = Color.Gold;
-            winLabel.Location = new Point(499, 334);
-            winLabel.Name = "winLabel";
-            winLabel.Size = new Size(329, 93);
-            winLabel.TabIndex = 1;
-            winLabel.Text = "You win?";
+            resultLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            resultLabel.AutoSize = true;
+            resultLabel.BackColor = Color.DarkOliveGreen;
+            resultLabel.Font = new Font("Segoe UI", 35F, FontStyle.Bold, GraphicsUnit.Point);
+            resultLabel.ForeColor = Color.Gold;
+            resultLabel.Location = new Point(496, 308);
+            resultLabel.Name = "resultLabel";
+            resultLabel.Size = new Size(329, 93);
+            resultLabel.TabIndex = 1;
+            resultLabel.Text = "You win?";
+            resultLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // subtitleLabel
             // 
@@ -64,6 +66,7 @@
             subtitleLabel.Size = new Size(222, 25);
             subtitleLabel.TabIndex = 2;
             subtitleLabel.Text = "No more characters so far!";
+            subtitleLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // restartButton
             // 
@@ -85,11 +88,12 @@
             ClientSize = new Size(1347, 756);
             Controls.Add(restartButton);
             Controls.Add(subtitleLabel);
-            Controls.Add(winLabel);
+            Controls.Add(resultLabel);
             Controls.Add(thatsItLabel);
             Name = "Form4";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Fin";
+            Load += Form4_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -97,7 +101,7 @@
         #endregion
 
         private Label thatsItLabel;
-        private Label winLabel;
+        private Label resultLabel;
         private Label subtitleLabel;
         private Button restartButton;
     }

@@ -40,8 +40,12 @@
             nonPlayerMove1Button = new Button();
             npcPictureBox = new PictureBox();
             playerPictureBox = new PictureBox();
+            nonPlayerEffectPicture = new PictureBox();
+            playerEffectPicture = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)npcPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)playerPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nonPlayerEffectPicture).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)playerEffectPicture).BeginInit();
             SuspendLayout();
             // 
             // nonPlayerLabel
@@ -131,7 +135,7 @@
             // nonPlayerMove3Button
             // 
             nonPlayerMove3Button.BackColor = Color.Gray;
-            nonPlayerMove3Button.Location = new Point(457, 399);
+            nonPlayerMove3Button.Location = new Point(457, 402);
             nonPlayerMove3Button.Name = "nonPlayerMove3Button";
             nonPlayerMove3Button.Size = new Size(128, 128);
             nonPlayerMove3Button.TabIndex = 8;
@@ -142,7 +146,7 @@
             // nonPlayerMove2Button
             // 
             nonPlayerMove2Button.BackColor = Color.Gray;
-            nonPlayerMove2Button.Location = new Point(304, 378);
+            nonPlayerMove2Button.Location = new Point(304, 384);
             nonPlayerMove2Button.Name = "nonPlayerMove2Button";
             nonPlayerMove2Button.Size = new Size(128, 128);
             nonPlayerMove2Button.TabIndex = 7;
@@ -153,13 +157,14 @@
             // nonPlayerMove1Button
             // 
             nonPlayerMove1Button.BackColor = Color.Gray;
-            nonPlayerMove1Button.Location = new Point(159, 335);
+            nonPlayerMove1Button.Location = new Point(159, 353);
             nonPlayerMove1Button.Name = "nonPlayerMove1Button";
             nonPlayerMove1Button.Size = new Size(128, 128);
             nonPlayerMove1Button.TabIndex = 6;
             nonPlayerMove1Button.TabStop = false;
             nonPlayerMove1Button.Text = "Move1";
             nonPlayerMove1Button.UseVisualStyleBackColor = false;
+            nonPlayerMove1Button.Click += nonPlayerMove1Button_Click;
             // 
             // npcPictureBox
             // 
@@ -178,6 +183,25 @@
             playerPictureBox.TabIndex = 11;
             playerPictureBox.TabStop = false;
             // 
+            // nonPlayerEffectPicture
+            // 
+            nonPlayerEffectPicture.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            nonPlayerEffectPicture.Location = new Point(517, 218);
+            nonPlayerEffectPicture.Name = "nonPlayerEffectPicture";
+            nonPlayerEffectPicture.Size = new Size(212, 212);
+            nonPlayerEffectPicture.TabIndex = 13;
+            nonPlayerEffectPicture.TabStop = false;
+            nonPlayerEffectPicture.Visible = false;
+            // 
+            // playerEffectPicture
+            // 
+            playerEffectPicture.Location = new Point(23, 870);
+            playerEffectPicture.Name = "playerEffectPicture";
+            playerEffectPicture.Size = new Size(212, 212);
+            playerEffectPicture.TabIndex = 14;
+            playerEffectPicture.TabStop = false;
+            playerEffectPicture.Visible = false;
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -194,7 +218,9 @@
             Controls.Add(playerMove1Button);
             Controls.Add(playerLabel);
             Controls.Add(nonPlayerLabel);
+            Controls.Add(nonPlayerEffectPicture);
             Controls.Add(npcPictureBox);
+            Controls.Add(playerEffectPicture);
             Controls.Add(playerPictureBox);
             Name = "Form3";
             StartPosition = FormStartPosition.CenterScreen;
@@ -202,6 +228,8 @@
             Load += Form3_Load;
             ((System.ComponentModel.ISupportInitialize)npcPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)playerPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nonPlayerEffectPicture).EndInit();
+            ((System.ComponentModel.ISupportInitialize)playerEffectPicture).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -220,5 +248,7 @@
         private Button nonPlayerMove1Button;
         private PictureBox npcPictureBox;
         private PictureBox playerPictureBox;
+        private PictureBox nonPlayerEffectPicture;
+        private PictureBox playerEffectPicture;
     }
 }

@@ -34,6 +34,7 @@ namespace GoblinsAndGuis
             adventure = new Form2();
             combat = new Form3();
             victory = new Form4();
+            Game.player = new Player();
         }
 
         public void ChangeForm(FormState form)
@@ -44,6 +45,7 @@ namespace GoblinsAndGuis
                 victory.Hide();
                 adventure.Hide();
                 combat.Hide();
+                Game.combatActive = false; 
 
                 characterCreation.Init();
                 characterCreation.Show();
@@ -53,6 +55,7 @@ namespace GoblinsAndGuis
                 adventure.Hide();
                 combat.Hide();
                 characterCreation.Hide();
+                Game.combatActive = false;
 
                 if (Assets.characterList.Length > Game.player.encounterCount) 
                 {
@@ -76,7 +79,9 @@ namespace GoblinsAndGuis
             {
                 adventure.Hide();
                 combat.Hide();
+                Game.combatActive = false;
 
+                victory.Init();
                 victory.Show();
             }
         }

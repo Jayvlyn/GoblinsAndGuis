@@ -12,8 +12,9 @@ namespace GoblinsAndGuis
         private Random random = new Random();
         
         public int expValue = 100;
-
-        public float moveTimer;
+        
+        public const float moveTime = 40;
+        public float moveTimer = moveTime;
         bool ready = false;
 
 
@@ -26,35 +27,50 @@ namespace GoblinsAndGuis
 
         public NonPlayer(string name, int speed, int health, int power) : base(name, speed, health, power)
         {
-            moveTimer = 10;
         }
 
         public NonPlayer()
         {
-            moveTimer = 10;
         }
 
-        public void Update()
+        public override void Update(double dt)
         {
+            base.Update(dt); // update for 'Character'
+
             if (ready)
             {
+                ready = false;
                 int moveSelection = random.Next(0, Game.nonPlayer.moves.Length);
                 UseMove(Game.player, moveSelection);
-                ready = false;
+                Game.checkDeath(); // checks for player death
+                moveTimer = moveTime;
             }
+        }
+
+        public override void UseMove(Character target, int moveNum)
+        {
+            if (moves[moveNum].ready)
+            {
+                moves[moveNum].cooldownTimer = moves[moveNum].cooldownTime;
+            }
+            base.UseMove(target, moveNum);
         }
 
         public void MoveTimer(double dt)
         {
-            if (moveTimer > 0)
+            if (!stunned)
             {
-                moveTimer -= (float)dt * speed;
-                ready = false;
-            }
-            else
-            {
-                moveTimer = 0;
-                ready = true;
+                if (moveTimer > 0)
+                {
+                    // Move timer does not decrease by seconds, it is a base 'moveTime' seconds between each move, which is sped up by the characters speed
+                    moveTimer -= (float)dt * speed;
+                    ready = false;
+                }
+                else
+                {
+                    moveTimer = 0;
+                    ready = true;
+                }
             }
         }
     }

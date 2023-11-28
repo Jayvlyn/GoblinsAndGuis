@@ -9,13 +9,13 @@ namespace GoblinsAndGuis
 {
     public class Move
     {
-        public string name;// Name of move
+        public string name; // Name of move
 
         // Generic effects a move can have
         public int damage = 0; // How much damage the opponent takes
         public int healing = 0; // How much the move user heals
         public int stun = 0; // How many seconds the move stuns the opponent
-        public int block = 0; // How many seconds you become invulnerable
+        public int block = 0; // How many seconds you become invulnerable to damage
 
         public float cooldownTime = 0;
         public float cooldownTimer = 0;
@@ -49,6 +49,12 @@ namespace GoblinsAndGuis
                 cooldownTimer = 0;
                 ready = true;
             }
+        }
+
+        public void ReadyMove()
+        {
+            cooldownTimer = 0;
+            ready = true;
         }
 
     }
