@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoblinsAndGuis
+namespace GameLogic
 {
     public static class Game
     {
@@ -17,7 +17,7 @@ namespace GoblinsAndGuis
         public static void Init()
         {
             // Move out of Game logic
-            Application.Run(UI.formManager.characterCreation);
+            //Application.Run(UI.formManager.characterCreation);
         }
 
         public static bool checkCombatVictory()
@@ -40,7 +40,7 @@ namespace GoblinsAndGuis
             if(result) {
                 player.dead = true;
                 // move out of game logic
-                UI.formManager.ChangeForm(FormManager.FormState.Victory); // end screen either way, not actual victory
+                //UI.formManager.ChangeForm(FormManager.FormState.Victory); // end screen either way, not actual victory
             }
             return result;
         }

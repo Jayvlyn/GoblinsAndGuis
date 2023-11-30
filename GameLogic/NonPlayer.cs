@@ -1,11 +1,11 @@
-﻿using GoblinsAndGuis;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoblinsAndGuis
+namespace GameLogic
 {
     public class NonPlayer : Character
     {
@@ -42,7 +42,7 @@ namespace GoblinsAndGuis
                 ready = false;
                 int moveSelection = random.Next(0, Game.nonPlayer.moves.Length);
                 UseMove(Game.player, moveSelection);
-                Game.checkDeath(); // checks for player death
+                Game.checkDeath();
                 moveTimer = moveTime;
             }
         }

@@ -1,3 +1,5 @@
+using GameLogic;
+
 namespace GoblinsAndGuis
 {
     internal static class Program
@@ -9,6 +11,7 @@ namespace GoblinsAndGuis
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+            Application.Run(UI.formManager.characterCreation);
             Game.Init();
         }
     }

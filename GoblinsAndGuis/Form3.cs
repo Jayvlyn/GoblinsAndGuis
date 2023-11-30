@@ -8,6 +8,7 @@ using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GameLogic;
 
 namespace GoblinsAndGuis
 {
@@ -29,8 +30,10 @@ namespace GoblinsAndGuis
         }
 
         private void Update(object sender, EventArgs e)  //run this logic each timer tick
-        {
+        { 
             t.Update();
+
+            if(Game.player.dead) UI.formManager.ChangeForm(FormManager.FormState.Victory); // end screen form, not victory
 
             if (Game.combatActive)
             {

@@ -1,4 +1,5 @@
-﻿using GoblinsAndGuis;
+﻿using GameLogic;
+using GoblinsAndGuis;
 using System;
 using System.Collections.Generic;
 using System.Linq;

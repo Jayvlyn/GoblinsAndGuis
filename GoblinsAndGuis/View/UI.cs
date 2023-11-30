@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GameLogic;
 
 namespace GoblinsAndGuis
 {
@@ -12,6 +13,7 @@ namespace GoblinsAndGuis
 
         public static void updateLabels(Label playerLabel, Label nonPlayerLabel)
         {
+            
             playerLabel.Text = Game.player.name + "\nSpeed: " + Game.player.speed + "\nHealth: " + Game.player.health + "\nPower: " + Game.player.power;
             nonPlayerLabel.Text = Game.nonPlayer.name + "\nSpeed: " + Game.nonPlayer.speed + "\nHealth: " + Game.nonPlayer.health + "\nPower: " + Game.nonPlayer.power;
         }

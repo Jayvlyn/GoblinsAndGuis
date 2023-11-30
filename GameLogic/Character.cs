@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoblinsAndGuis
+namespace GameLogic
 {
     public class Character : GameObject
     {
