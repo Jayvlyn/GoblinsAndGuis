@@ -16,6 +16,7 @@ namespace GoblinsAndGuis
 
         public static void Init()
         {
+            // Move out of Game logic
             Application.Run(UI.formManager.characterCreation);
         }
 
@@ -38,6 +39,7 @@ namespace GoblinsAndGuis
             bool result = player.health <= 0;
             if(result) {
                 player.dead = true;
+                // move out of game logic
                 UI.formManager.ChangeForm(FormManager.FormState.Victory); // end screen either way, not actual victory
             }
             return result;

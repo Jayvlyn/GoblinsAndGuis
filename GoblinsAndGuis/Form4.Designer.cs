@@ -48,10 +48,10 @@
             // 
             resultLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             resultLabel.AutoSize = true;
-            resultLabel.BackColor = Color.DarkOliveGreen;
+            resultLabel.BackColor = Color.Transparent;
             resultLabel.Font = new Font("Segoe UI", 35F, FontStyle.Bold, GraphicsUnit.Point);
             resultLabel.ForeColor = Color.Gold;
-            resultLabel.Location = new Point(496, 308);
+            resultLabel.Location = new Point(476, 262);
             resultLabel.Name = "resultLabel";
             resultLabel.Size = new Size(329, 93);
             resultLabel.TabIndex = 1;

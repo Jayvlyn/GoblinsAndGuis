@@ -21,6 +21,7 @@ namespace GoblinsAndGuis
         {
             if (Game.player.dead)
             {
+                BackColor = Color.DarkRed;
                 subtitleLabel.Text = "You died to " + Assets.characterList[Game.player.encounterCount - 1].name + "!!";
                 resultLabel.Text = "YOU LOSE!!!";
             }

@@ -27,7 +27,7 @@ namespace GoblinsAndGuis
         {
             characterList = new NonPlayer[]
             {
-                new NonPlayer("Bob Roberts", 5, 20, 1),
+                new NonPlayer("Bob Roberts", 6, 20, 1),
                 new NonPlayer("Chob Roberts", 10, 60, 3),
             };
 
