@@ -53,8 +53,8 @@ namespace GameLogic
 
             chob.moves[0] = GetMoveCopy(moveList[1]);
             chob.moves[1] = GetMoveCopy(moveList[2]);
-            chob.moves[2] = GetMoveCopy(moveList[4]);
-            chob.moves[3] = GetMoveCopy(moveList[5]);
+            chob.moves[2] = GetMoveCopy(moveList[5]);
+            chob.moves[3] = GetMoveCopy(moveList[4]);
 
             chob.expValue = 25;
         }

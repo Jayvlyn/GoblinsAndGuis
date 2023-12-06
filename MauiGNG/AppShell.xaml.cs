@@ -1,12 +1,10 @@
-﻿namespace Maui
+﻿namespace MauiGNG
 {
     public partial class AppShell : Shell
     {
         public AppShell()
         {
             InitializeComponent();
-
-            Routing.RegisterRoute(nameof(CreationPage), typeof(CreationPage));
         }
     }
 }

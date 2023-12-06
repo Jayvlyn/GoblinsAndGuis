@@ -37,13 +37,33 @@ namespace GameLogic
         {
             base.Update(dt); // update for 'Character'
 
+            // ADDED MORE INTELLIGENT AI FOR FINAL, ENEMY MOVE SELECTION ISNT COMPLETELY RANDOM
+
             if (ready)
             {
-                ready = false;
-                int moveSelection = random.Next(0, Game.nonPlayer.moves.Length);
+                int moveSelection = 0;
+
+                if (stunned) return;
+
+                if (blocking)
+                {
+                    if (moves[0].cooldownTime <= 0) moveSelection = 0;
+                    else if (moves[1].cooldownTime <= 0) moveSelection = 1;
+                    else if (moves[2].cooldownTime <= 0) moveSelection = 2;
+                    else if (moves[3].cooldownTime <= 0) moveSelection = 3;
+                }
+                else
+                {
+                    if (moves[3].cooldownTime <= 0) moveSelection = 3;
+                    else if (moves[1].cooldownTime <= 0) moveSelection = 1;
+                    else if (moves[2].cooldownTime <= 0) moveSelection = 2;
+                    else if (moves[0].cooldownTime <= 0) moveSelection = 0;
+                }
+
                 UseMove(Game.player, moveSelection);
                 Game.checkDeath();
                 moveTimer = moveTime;
+                ready = false;
             }
         }
 

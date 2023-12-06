@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using Maui.ViewModel;
 
-namespace Maui
+namespace MauiGNG
 {
     public static class MauiProgram
     {
@@ -16,14 +15,8 @@ namespace Maui
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<MainViewModel>();
-
-            builder.Services.AddSingleton<CreationPage>();
-            builder.Services.AddSingleton<CreationViewModel>();
-
 #if DEBUG
-            builder.Logging.AddDebug();
+		builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

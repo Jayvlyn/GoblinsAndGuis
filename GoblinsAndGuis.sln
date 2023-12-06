@@ -5,9 +5,9 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoblinsAndGuis", "GoblinsAndGuis\GoblinsAndGuis.csproj", "{46A9EAC8-B60B-43B3-9B61-B82665BC3A6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maui", "Maui\Maui.csproj", "{EBCE06B0-33AA-4E1D-8C76-37FB596934FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameLogic", "GameLogic\GameLogic.csproj", "{6476864C-22D3-4C10-9CFA-9428578B4E03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLogic", "GameLogic\GameLogic.csproj", "{6476864C-22D3-4C10-9CFA-9428578B4E03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiGNG", "MauiGNG\MauiGNG.csproj", "{30A74FF8-F791-412C-A466-5188244560EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +19,16 @@ Global
 		{46A9EAC8-B60B-43B3-9B61-B82665BC3A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46A9EAC8-B60B-43B3-9B61-B82665BC3A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46A9EAC8-B60B-43B3-9B61-B82665BC3A6A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBCE06B0-33AA-4E1D-8C76-37FB596934FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBCE06B0-33AA-4E1D-8C76-37FB596934FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBCE06B0-33AA-4E1D-8C76-37FB596934FD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{EBCE06B0-33AA-4E1D-8C76-37FB596934FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBCE06B0-33AA-4E1D-8C76-37FB596934FD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBCE06B0-33AA-4E1D-8C76-37FB596934FD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{6476864C-22D3-4C10-9CFA-9428578B4E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6476864C-22D3-4C10-9CFA-9428578B4E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6476864C-22D3-4C10-9CFA-9428578B4E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6476864C-22D3-4C10-9CFA-9428578B4E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30A74FF8-F791-412C-A466-5188244560EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30A74FF8-F791-412C-A466-5188244560EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30A74FF8-F791-412C-A466-5188244560EA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{30A74FF8-F791-412C-A466-5188244560EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30A74FF8-F791-412C-A466-5188244560EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30A74FF8-F791-412C-A466-5188244560EA}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
